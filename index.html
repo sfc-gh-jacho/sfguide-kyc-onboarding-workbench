@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KYC Onboarding Workbench on Snowflake</title>
+  <meta name="description" content="An interactive Streamlit workbench for end-to-end KYC onboarding on Snowflake: intake, identity documents, explainable risk, screening and analyst decisions, on synthetic data. Try it in your browser with no account." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-logo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        KYC Workbench
+      </a>
+      <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links" role="list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#modes">Two modes</a></li>
+        <li><a href="#run">Run it</a></li>
+        <li><a href="try/">Try it now</a></li>
+        <li><a href="https://github.com/sfc-gh-jacho/sfguide-kyc-onboarding-workbench">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Financial Services · Banking · Compliance
+      </div>
+      <h1>KYC Onboarding <span>Workbench</span></h1>
+      <p>Follow every new customer from application to decision in one place: identity documents read by AI, explainable risk scores, fuzzy-match screening and an audit-ready decision trail, all on governed data in Snowflake.</p>
+      <div class="hero-ctas">
+        <a href="try/" class="btn btn-primary">Try it in your browser</a>
+        <a href="#tour" class="btn btn-ghost">See the tour</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-val">0</div><div class="hero-stat-label">Accounts Needed to Try</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">500</div><div class="hero-stat-label">Synthetic Applicants</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-label">Workflow Steps</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">~20 min</div><div class="hero-stat-label">Live Setup</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="overview">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">The problem</div>
+          <h2>Onboarding Spread Across Too Many Systems</h2>
+          <p>Know-your-customer (KYC) reviews often mean an analyst switching between an application system, an identity vendor portal, a screening tool and a spreadsheet, then writing a rationale nobody can easily find later. This workbench shows how one governed copy of the data can bring those steps together, with the decision and its evidence recorded in the same place.</p>
+        </div>
+        <div class="pipeline reveal">
+          <div class="pipeline-card"><div class="pipeline-step grad-1">1</div><h3>Intake</h3><p>Applications joined with core banking, identity-vendor and device data.</p></div>
+          <div class="pipeline-card"><div class="pipeline-step grad-3">2</div><h3>Identity</h3><p>Cortex AI_EXTRACT reads the ID document and flags mismatches and expiry.</p></div>
+          <div class="pipeline-card"><div class="pipeline-step grad-4">3</div><h3>Risk and screening</h3><p>Explainable factor scores and fuzzy sanctions, PEP and adverse-media matching.</p></div>
+          <div class="pipeline-card"><div class="pipeline-step grad-2">4</div><h3>Decision</h3><p>An AI-drafted case summary, a required rationale, and an audit trail.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tour" class="bg-alt">
+      <div class="container narrow">
+        <div class="section-header reveal">
+          <div class="section-label">Tour</div>
+          <h2>The Finished Workbench</h2>
+          <p>These are screenshots of the running app in sample-data mode, the same version you can open in your browser. Every applicant, document and watchlist entry is synthetic.</p>
+        </div>
+
+        <figure class="shot reveal">
+          <img src="docs/images/01-overview.webp" width="1200" height="750" loading="lazy" alt="Overview page with KPI cards, applications by status chart and the open work queue" />
+          <figcaption><span class="cap-tag">Overview</span><strong>The whole onboarding funnel on one screen.</strong> KPI cards, a daily status chart and the open work queue, computed from one governed set of tables. Counts describe this synthetic data set only.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/02-intake.webp" width="1200" height="750" loading="lazy" alt="Onboarding intake with the application queue filtered to alert review and a selected applicant's sources" />
+          <figcaption><span class="cap-tag">Step 1 · Intake</span><strong>Every source joined before anyone reviews it.</strong> Selecting an application shows what it says, what core banking knows, the identity vendor's result and device signals. In Snowflake, vendor data like this can arrive through Secure Data Sharing or Snowflake Marketplace instead of file transfers.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/03-identity.webp" width="1200" height="750" loading="lazy" alt="Identity page showing a synthetic driver's license and a field comparison with a surname mismatch" />
+          <figcaption><span class="cap-tag">Step 2 · Identity</span><strong>Cortex AI_EXTRACT reads the document; the app finds the mismatch.</strong> The surname on this synthetic license reads "Hollister" while the application says "Hollis", which raises an alert alongside the identity vendor's mismatch. The extraction shown is captured from a real AI_EXTRACT run on this card.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/04-risk.webp" width="1200" height="750" loading="lazy" alt="Risk assessment page with a score of 75 and a bar chart of the four contributing factors" />
+          <figcaption><span class="cap-tag">Step 3 · Risk</span><strong>Scores anyone can explain.</strong> Each point comes from a named factor: here a high-risk country of residence, wire services, high expected volume and a cash-intensive source of funds. Weight sliders show how a policy change would move the whole book.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/05-screening.webp" width="1200" height="750" loading="lazy" alt="Screening alerts page listing four watchlist hits with name similarity scores and a side-by-side comparison" />
+          <figcaption><span class="cap-tag">Step 4 · Screening</span><strong>Fuzzy matching with the evidence side by side.</strong> JAROWINKLER_SIMILARITY compares 500 applicants with 44 watchlist entries. Birth date and country show a confirmed sanctions match apart from a near-miss false positive. Lower the threshold and the false positives grow.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/06-decision.webp" width="1200" height="750" loading="lazy" alt="Analyst decision page with a Cortex case summary, alerts and the decision form" />
+          <figcaption><span class="cap-tag">Step 5 · Decision</span><strong>An AI-drafted summary; the analyst decides.</strong> Cortex AI_COMPLETE summarizes the case using only the facts shown, which you can expand. The analyst records an outcome with a required rationale, and it lands in the audit trail.</figcaption>
+        </figure>
+
+        <figure class="shot reveal">
+          <img src="docs/images/07-governance.webp" width="1200" height="750" loading="lazy" alt="Governance page viewing applicant records as the Auditor role with tax ID, birth date and document numbers masked" />
+          <figcaption><span class="cap-tag">Governance</span><strong>The same records, masked by role.</strong> Viewed as an auditor, tax IDs, birth dates and document numbers are masked. In live mode, masking and row access policies on the tables enforce this for every tool, and every analyst action is written to an audit table.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="modes">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">Two modes</div>
+          <h2>Click Around First, Connect Later</h2>
+          <p>The same Streamlit code runs both ways, so a business lead can explore it today and a technical team can run it on real infrastructure tomorrow.</p>
+        </div>
+        <div class="mode-grid reveal">
+          <div class="mode-card">
+            <h3>Sample data, in your browser</h3>
+            <ul>
+              <li>No Snowflake account, login or install</li>
+              <li>Python runs in the browser with <a href="https://github.com/whitphx/stlite">stlite</a></li>
+              <li>AI outputs are <strong>captured from a real Cortex run</strong> and labeled</li>
+              <li>Your decisions stay in your browser tab</li>
+            </ul>
+            <p style="margin-top:16px"><a href="try/" class="btn btn-primary">Try it now</a></p>
+          </div>
+          <div class="mode-card">
+            <h3>Live, in your Snowflake account</h3>
+            <ul>
+              <li>Deployed as Streamlit in Snowflake</li>
+              <li>Screening runs <code>JAROWINKLER_SIMILARITY</code> in SQL</li>
+              <li>Live Cortex <code>AI_EXTRACT</code> and <code>AI_COMPLETE</code></li>
+              <li>Masking and row access policies on the tables</li>
+              <li>Decisions and audit events written to Snowflake</li>
+            </ul>
+            <p style="margin-top:16px"><a href="#run" class="btn btn-ghost" style="color:var(--navy);border-color:var(--border)">Set it up</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="run" class="bg-alt">
+      <div class="container narrow">
+        <div class="section-header reveal">
+          <div class="section-label">Run it live</div>
+          <h2>Deploy to Your Own Account</h2>
+        </div>
+        <ul class="checklist reveal">
+          <li><strong>Prerequisites:</strong> Enterprise Edition (masking and row access policies), Cortex AI functions in your region, a compute pool for Streamlit's container runtime, and an external access integration for PyPI.</li>
+          <li><strong>1. Run the setup script.</strong> Run <a href="sql/kyc_setup.sql" download>sql/kyc_setup.sql</a> in a Snowsight worksheet. It creates <code>KYC_DEMO_DB</code>, an XSMALL warehouse, empty tables with policies attached, a document stage and four audience roles. A least-privilege option is included at the top.</li>
+          <li><strong>2. Deploy the app.</strong> Clone the repo, set your compute pool and integration names in <code>snowflake.yml</code>, then run <code>snow streamlit deploy --replace</code>.</li>
+          <li><strong>3. Load the data.</strong> Open the app, go to <em>About this example</em> and select <strong>Load synthetic data</strong>.</li>
+          <li><strong>4. Clean up.</strong> Uncomment and run Step 8 of the script to remove everything.</li>
+        </ul>
+        <div class="callout reveal">Measured on an XSMALL warehouse: setup and data loading take about a minute of compute. Each Cortex call takes a few seconds and a few thousand tokens. The Streamlit container uses its compute pool while the app is open.</div>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">Snowflake capabilities</div>
+          <h2>What Each Step Uses</h2>
+        </div>
+        <div class="cortex-grid reveal">
+          <div class="cortex-card"><h3>Streamlit in Snowflake</h3><p>The workbench runs next to the data, with the Snowflake session built in. No credentials leave the platform.</p></div>
+          <div class="cortex-card"><h3>Cortex AI_EXTRACT</h3><p>Reads named fields from identity documents on a stage with one SQL function.</p></div>
+          <div class="cortex-card"><h3>Cortex AI_COMPLETE</h3><p>Drafts grounded case summaries; the analyst makes every decision.</p></div>
+          <div class="cortex-card"><h3>Masking and row access</h3><p>Policies on the tables decide what each role sees, in every tool.</p></div>
+        </div>
+        <div class="doc-links reveal">
+          <h3>Learn more in the Snowflake documentation</h3>
+          <div class="doc-grid">
+            <a href="https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit" target="_blank" rel="noopener">Streamlit in Snowflake →</a>
+            <a href="https://docs.snowflake.com/en/sql-reference/functions/ai_extract" target="_blank" rel="noopener">AI_EXTRACT →</a>
+            <a href="https://docs.snowflake.com/en/sql-reference/functions/ai_complete" target="_blank" rel="noopener">AI_COMPLETE →</a>
+            <a href="https://docs.snowflake.com/en/sql-reference/functions/jarowinkler_similarity" target="_blank" rel="noopener">JAROWINKLER_SIMILARITY →</a>
+            <a href="https://docs.snowflake.com/en/user-guide/security-column-ddm-intro" target="_blank" rel="noopener">Masking Policies →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>Workbench</h4>
+          <a href="try/">Try it in your browser</a>
+          <a href="#tour">Tour</a>
+          <a href="#run">Run it live</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="sql/kyc_setup.sql" download>Download setup SQL</a>
+          <a href="https://github.com/sfc-gh-jacho/sfguide-kyc-onboarding-workbench">GitHub Repository</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Code licensed under <a href="https://github.com/sfc-gh-jacho/sfguide-kyc-onboarding-workbench/blob/main/LICENSE">Apache 2.0</a>. Illustrative example provided as-is; not an official Snowflake product and not supported by Snowflake Support. All applicants, documents, vendor results and watchlist entries are synthetic, countries are coded, and the identity cards are generated and marked as samples. Rules, thresholds and scores are simplified and are not regulatory or compliance advice. The in-browser version loads stlite and Pyodide from the jsDelivr CDN; this landing page loads no third-party resources.</p>
+        <span class="snow-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="3.3" y1="7" x2="20.7" y2="17"/><line x1="3.3" y1="17" x2="20.7" y2="7"/></svg>
+          Built with Streamlit in Snowflake
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

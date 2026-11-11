@@ -1,0 +1,40 @@
+definition_version: 2
+entities:
+  kyc_workbench:
+    type: streamlit
+    identifier:
+      name: KYC_ONBOARDING_WORKBENCH
+      database: KYC_DEMO_DB
+      schema: KYC
+    query_warehouse: KYC_WH
+    runtime_name: SYSTEM$ST_CONTAINER_RUNTIME_PY3_11
+    compute_pool: SYSTEM_COMPUTE_POOL_CPU            # your account's DEFAULT_STREAMLIT_COMPUTE_POOL
+    external_access_integrations:
+      - PYPI_ACCESS_INTEGRATION                      # installs the pinned packages in pyproject.toml
+    main_file: streamlit_app.py
+    artifacts:
+      - streamlit_app.py
+      - pyproject.toml
+      - .streamlit/config.toml
+      - app_pages/overview.py
+      - app_pages/intake.py
+      - app_pages/identity.py
+      - app_pages/risk.py
+      - app_pages/screening.py
+      - app_pages/decision.py
+      - app_pages/governance.py
+      - app_pages/about.py
+      - kyc/__init__.py
+      - kyc/data.py
+      - kyc/logic.py
+      - kyc/source.py
+      - kyc/ui.py
+      - kyc/ai.py
+      - kyc/documents.py
+      - data/captured_ai.json
+      - static/Inter-Regular.ttf
+      - static/Inter-Medium.ttf
+      - static/Inter-SemiBold.ttf
+      - static/Inter-Bold.ttf
+      - static/JetBrainsMono-Regular.ttf
+      - static/JetBrainsMono-Medium.ttf

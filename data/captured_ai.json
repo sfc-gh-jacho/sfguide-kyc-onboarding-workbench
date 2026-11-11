@@ -1,0 +1,104 @@
+{
+  "_note": "Captured from real Snowflake Cortex calls made by this app in live mode on synthetic data: AI_COMPLETE (llama3.3-70b, temperature 0) for case summaries and AI_EXTRACT on the rendered synthetic documents. Output can differ between runs and models.",
+  "captured_on": "2026-11-11",
+  "case_summaries": {
+    "A00007": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00007, an individual and small business owner, applying for wire services via a branch.\n* An expired passport was found, with an expiration date of 2025-08-14, which is a current issue since the passport is now expired.\n* The key risk drivers are the expired identity document and the product being applied for, wire services, contributing to a medium risk score of 35.\n* The recommended next step is to request enhanced due diligence to verify the applicant's identity and assess the risk associated with the expired passport and wire services application."
+    },
+    "A00012": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00012, an individual applying for a checking account online, who works as a Teacher and claims business income as the source of funds.\n* A document name mismatch was found, with the document showing the name Jamie Hollister, but the application showing Jamie Hollis, and an identity vendor mismatch with a score of 61.\n* The key risk drivers are the document name mismatch and the identity vendor mismatch, contributing 15 and 10 points respectively to the medium risk score of 25.\n* The recommended next step is to request enhanced due diligence to verify the applicant's identity and resolve the discrepancies found."
+    },
+    "A00019": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00019, an individual import/export trader applying for wire services via mobile.\n* A sanctions match with a 100% name similarity to Orvel Vantorre (W0041) was found, as well as a high-risk geography alert due to the applicant's residence and nationality in CTRY_C and CTRY_K.\n* The key risk drivers are the sanctions match, the product being wire services, the applicant's nationality from a high-risk country, and the expected monthly volume exceeding $40,000, contributing to a high risk score of 93.\n* The recommended next step is to escalate for decline due to the high risk score and significant risk drivers, particularly the sanctions match."
+    },
+    "A00023": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00023, an individual applying for a checking account online, who is a graduate student residing in and a national of CTRY_B.\n* An alert was found indicating a possible sanctions match with Kasimir Quistadt (W0042) due to a 93% name similarity.\n* The key risk drivers are the possible sanctions match, which is the primary contributor to the medium risk score of 25.\n* The recommended next step is to request enhanced due diligence to further investigate the possible sanctions match and verify the applicant's identity."
+    },
+    "A00031": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00031, an individual applying for a wealth account online, who is a Deputy Minister of Infrastructure.\n* The review found that the applicant has a high risk score of 58, with alerts indicating a name similarity to a politically exposed person, Teodric Orvekk.\n* The key risk drivers are the applicant's status as a politically exposed person, residence in a medium-risk country, the product type being wealth, and the expected monthly volume exceeding $40,000.\n* The recommended next step is to request enhanced due diligence to further assess the applicant's risk profile and source of funds."
+    },
+    "A00044": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00044, a business applying for a business account online.\n* The review found that the applicant has a high risk score of 55, with alerts for an undisclosed beneficial owner and high-risk geography.\n* The key risk drivers are the undisclosed beneficial owner, expected monthly volume of $150,000, and the product being a business account.\n* The recommended next step is to request enhanced due diligence to further investigate the applicant's beneficial ownership and business activities."
+    },
+    "A00052": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00052, an individual and small business owner, applying for wire services via a branch.\n* The review found that the applicant has a high-risk profile due to their residence and nationality in CTRY_J, a high-risk geography, and other risk factors related to their business and expected transaction volume.\n* The key risk drivers are the applicant's residence in a high-risk country, the use of wire services, expected monthly volume of $100K+, and a cash-intensive source of funds, resulting in a high risk score of 75.\n* The recommended next step is to request enhanced due diligence to further assess the applicant's risk profile and mitigate potential risks associated with their application."
+    },
+    "A00060": {
+      "model": "llama3.3-70b",
+      "text": "* The applicant is A00060, an individual applying for a wealth product via mobile, who works as an investment manager and claims their source of funds is their salary.\n* An adverse media alert was found due to a name similarity with Valen Ulbrecht (W0044), with a 100% match.\n* The key risk drivers are adverse media and the product type (wealth), contributing to a medium risk score of 30.\n* The recommended next step is to request enhanced due diligence to further investigate the applicant's connection to the adverse media alert and verify their source of funds."
+    }
+  },
+  "extractions": {
+    "A00007": {
+      "date_of_birth": "1975-01-19",
+      "document_number": "X65834632",
+      "document_type": "PASSPORT",
+      "expiry_date": "2025-08-14",
+      "given_names": "HARPER",
+      "surname": "LANGFORD"
+    },
+    "A00012": {
+      "date_of_birth": "1968-08-23",
+      "document_number": "X36827654",
+      "document_type": "DRIVERS LICENSE",
+      "expiry_date": "2033-11-16",
+      "given_names": "JAMIE",
+      "surname": "HOLLISTER"
+    },
+    "A00019": {
+      "date_of_birth": "1971-03-09",
+      "document_number": "X61341708",
+      "document_type": "PASSPORT",
+      "expiry_date": "2034-05-01",
+      "given_names": "ORVEL",
+      "surname": "VANTORRE"
+    },
+    "A00023": {
+      "date_of_birth": "1994-06-21",
+      "document_number": "X76509340",
+      "document_type": "PASSPORT",
+      "expiry_date": "2032-05-10",
+      "given_names": "KASIMER",
+      "surname": "QUISTAD"
+    },
+    "A00031": {
+      "date_of_birth": "1966-11-02",
+      "document_number": "X99086035",
+      "document_type": "PASSPORT",
+      "expiry_date": "2034-06-17",
+      "given_names": "TEODRIC",
+      "surname": "ORVEKK"
+    },
+    "A00052": {
+      "date_of_birth": "1992-02-22",
+      "document_number": "X12891650",
+      "document_type": "DRIVERS LICENSE",
+      "expiry_date": "2033-01-25",
+      "given_names": "DAKOTA",
+      "surname": "FENWICK"
+    },
+    "A00060": {
+      "date_of_birth": "1979-08-30",
+      "document_number": "X35110147",
+      "document_type": "DRIVERS LICENSE",
+      "expiry_date": "2033-08-19",
+      "given_names": "VALEN",
+      "surname": "ULBRECHT"
+    },
+    "A00100": {
+      "date_of_birth": "1980-09-19",
+      "document_number": "X12754099",
+      "document_type": "DRIVERS LICENSE",
+      "expiry_date": "2030-06-20",
+      "given_names": "LANE",
+      "surname": "STERLING"
+    }
+  }
+}
